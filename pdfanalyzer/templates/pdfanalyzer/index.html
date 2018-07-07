@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href="{% static "bootstrap-4.0.0-dist/css/bootstrap.min.css" %}">
+<script src="{% static "jquery.min.js" %}"></script>
+<script src="{% static "bootstrap-4.0.0-dist/js/bootstrap.min.js" %}"></script>
+
+{% if textfile_list %}
+    <ul>
+    {% for textfile in textfile_list %}
+        <li><a href="/pdfanalyzer/{{ textfile.id }}/">{{ textfile.textfile_name }}</a></li>
+        <p class="text-warning">Testtext</p>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No files are available.</p>
+{% endif %}

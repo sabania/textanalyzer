@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="utf-8">
+        <title>PDFanalyzer</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static "bootstrap-4.0.0-dist/css/bootstrap.min.css" %}">
+        <script src="{% static "jquery-3.3.1.min.js" %}"></script>
+        <script src="{% static "bootstrap-4.0.0-dist/js/bootstrap.min.js" %}"></script>
+        
+        <script src="{% static "dropzone.js" %}"></script>
+        <link href="{% static 'dropzone.css' %}" type="text/css" rel="stylesheet"/>
+        
+        <script>
+            var enabledCheckboxes = 0;
+            
+            $(document).ready(function()
+            {
+                $('#wordcount').on('change', function()
+                {
+                    if($(this).is(':checked'))
+                    {
+                        // alert('checked');
+                        enabledCheckboxes = enabledCheckboxes + 1;
+                    } 
+                    else 
+                    {
+                        // alert('un-checked');
+                        enabledCheckboxes = enabledCheckboxes - 1;
+                    }
+                    if (window.console) console.log(enabledCheckboxes);
+                    $('#measurements').val(enabledCheckboxes);
+                });
+                
+                $('#mostcommonword').on('change', function()
+                {
+                    if($(this).is(':checked'))
+                    {
+                        // alert('checked');
+                        enabledCheckboxes = enabledCheckboxes + 10;
+                    } 
+                    else 
+                    {
+                        // alert('un-checked');
+                        enabledCheckboxes = enabledCheckboxes - 10;
+                    }
+                    if (window.console) console.log(enabledCheckboxes);
+                    $('#measurements').val(enabledCheckboxes);
+                });
+                
+                $('#adjectivecount').on('change', function()
+                {
+                    if($(this).is(':checked'))
+                    {
+                        // alert('checked');
+                        enabledCheckboxes = enabledCheckboxes + 100;
+                    } 
+                    else 
+                    {
+                        // alert('un-checked');
+                        enabledCheckboxes = enabledCheckboxes - 100;
+                    }
+                    if (window.console) console.log(enabledCheckboxes);
+                    $('#measurements').val(enabledCheckboxes);
+                });
+                
+                $('#nouncount').on('change', function()
+                {
+                    if($(this).is(':checked'))
+                    {
+                        // alert('checked');
+                        enabledCheckboxes = enabledCheckboxes + 1000;
+                    } 
+                    else 
+                    {
+                        // alert('un-checked');
+                        enabledCheckboxes = enabledCheckboxes - 1000;
+                    }
+                    if (window.console) console.log(enabledCheckboxes);
+                    $('#measurements').val(enabledCheckboxes);
+                });
+                
+                $('#verbcount').on('change', function()
+                {
+                    if($(this).is(':checked'))
+                    {
+                        // alert('checked');
+                        enabledCheckboxes = enabledCheckboxes + 10000;
+                    } 
+                    else 
+                    {
+                        // alert('un-checked');
+                        enabledCheckboxes = enabledCheckboxes - 10000;
+                    }
+                    if (window.console) console.log(enabledCheckboxes);
+                    $('#measurements').val(enabledCheckboxes);
+                });
+                
+            });
+        </script>
+           
+    </head>
+    
+<body>
+    <header>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10"><h1><a style="text-decoration: none;" href="{% url 'pdfanalyzer:upload' %}">PDFanalyzer</a></h1></div>
+            <div class="col-md-1"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10"><hr></div>
+            <div class="col-md-1"></div>
+        </div>
+    </header>
+    
+    {% block content %}{% endblock %}
+    
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10"><hr></div>
+        <div class="col-md-1"></div>
+    </div>
+        
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <footer>     
+                <p>Created by: SAFE</p>
+                <!-- <p>Contact information: <a href="">someone@example.com</a>.</p> -->
+            </footer>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</body>
+    

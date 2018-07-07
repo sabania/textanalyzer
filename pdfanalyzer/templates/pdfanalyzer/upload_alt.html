@@ -1,0 +1,139 @@
+{% load static %}
+<link rel="stylesheet" href="{% static "bootstrap-4.0.0-dist/css/bootstrap.min.css" %}">
+<script src="{% static "jquery.min.js" %}"></script>
+<script src="{% static "bootstrap-4.0.0-dist/js/bootstrap.min.js" %}"></script>
+
+<script src="{% static "dropzone.js" %}"></script>
+
+
+<script type="text/javascript">
+
+        Dropzone.options.myDropzone = {
+
+            // Prevents Dropzone from uploading dropped files immediately
+            autoProcessQueue : false,
+            paramName: "files",
+            acceptedFiles: "application/pdf",
+            maxFilesize: 2,
+            maxFiles: 2,
+
+            init : function() {
+            
+                var submitButton = document.querySelector("#submit-all")
+                myDropzone = this;
+
+                submitButton.addEventListener("click", function() 
+                {
+                    myDropzone.processQueue();
+                    // Tell Dropzone to process all queued files.
+                });
+
+                // You might want to show the submit button only when
+                // files are dropped here:
+                this.on("addedfile", function() 
+                {
+                    // Show submit button here and/or inform user to click it.
+                });
+            }
+        };
+    </script>
+
+<!--
+<script> 
+    $(".my-dropzone").dropzone({ url: "/file/post" });
+    
+</script>
+-->
+
+<!--
+<script> 
+Dropzone.autoDiscover = false;
+// or disable for specific dropzone:
+// Dropzone.options.myDropzone = false;
+
+$(function() {
+  // Now that the DOM is fully loaded, create the dropzone, and setup the
+  // event listeners
+  var myDropzone = new Dropzone("#my-dropzone");
+  myDropzone.on("addedfile", function(file) {
+    /* Maybe display some more file information on your page */
+  });
+})
+
+</script>
+-->
+
+
+<link rel="stylesheet" href="{% static "stylesheet.css" %}">
+
+
+
+<!-- <div class="container"> -->
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10"><h1>Textanalyzer</h1></div>
+    <div class="col-md-1"></div>
+</div>
+<!-- </div> -->
+
+<!-- <div class="container"> -->
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10"><hr></div>
+    <div class="col-md-1"></div>
+</div>
+<!-- </div> -->
+
+<!-- <p class="text-warning">Testtext</p> -->
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+    <!--
+        <form class="dropzone" id="myDropzone" action="/upload/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        </form>
+    -->
+    
+    <!-- <form action="/upload/" class="dropzone"> -->
+
+        <p> Wählen Sie Eigenschaften aus, welche bei Ihrer/n pdf-Datei(en) bestimmt werden sollen: </p>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                Wortfrequenz
+            </label>
+        </div>
+        
+        <div class="form-check"> 
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+            <label class="form-check-label" for="defaultCheck2">
+                Anzahl Worte
+            </label>
+        </div>
+        
+        <hr>
+
+    <!-- <form action="upload" class="dropzone" method="post" enctype="multipart/form-data"> -->
+    
+    <form action="upload" id="my_dropzone" class="dropzone" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="dz-message" data-dz-message>
+            <img src="{% static "pdf_icon.png" %}" alt="PDF Dropzone" style="width:50px; height:50px;"/>
+            <span>Ziehen Sie Ihr(e) pdf-Datei(en) in das Dokumentensymbol. Oder klicken Sie zur Dateiauswahl darauf.</span>
+        </div>
+        <p><input type="submit" value="Analyse starten" /></p>
+    </form>
+    
+    <!-- dz-max-files-reached -->
+    
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10"><hr></div>
+    <div class="col-md-1"></div>
+</div>
+

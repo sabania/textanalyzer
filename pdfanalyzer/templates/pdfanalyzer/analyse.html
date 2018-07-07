@@ -1,0 +1,56 @@
+{% extends "pdfanalyzer/base.html" %}
+
+{% block content %}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+        
+                <table class="table table-dark">
+                    {% if analysedfiles %}
+                    <thead>
+                        <tr>
+                            <th>Filename</th>
+                            <th>Word count</th>
+                            <th>Most Common Word</th>
+                            <th>Adjective count</th>
+                            <th>Noun count</th>
+                            <th>Verb count</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {% for analysedfile in analysedfiles %}
+                        <tr>
+                            <td>{{ analysedfile.filename }}</td>
+                            <td>{{ analysedfile.word_count }}</td>
+                            <td>{{ analysedfile.most_common_word }}</td>
+                            <td>{{ analysedfile.adjective_count }}</td>
+                            <td>{{ analysedfile.noun_count }}</td>
+                            <td>{{ analysedfile.verb_count }}</td>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+                    {% else %}
+                        <p>No files are available.</p>
+                    {% endif %}
+                    
+                <hr></hr>
+            </div>
+
+            <div class="col-md-1"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                {% load static %}
+                <a href="{{ "/tmpfiles/reports/Report.pdf" }}" Report download>
+                    <img src="{% static "pdf_icon.png" %}" alt="Report download" style="width:50px;height:50px;border:0;">
+                    <p>Download Report</p>
+                </a> 
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+{% endblock  %}

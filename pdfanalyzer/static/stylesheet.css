@@ -1,0 +1,10 @@
+{% load staticfiles %}
+
+.divimage 
+{
+    background: url("pdf_icon.png") 50% 0 no-repeat fixed;
+    /* background: url("/static/pdf_icon.png") 50% 0 no-repeat fixed; */
+    /* content:url('pdf_icon.png'); */
+    /* background-image: url('pdf_icon.jpg'); */
+    /* background-repeat: no-repeat; */
+}​

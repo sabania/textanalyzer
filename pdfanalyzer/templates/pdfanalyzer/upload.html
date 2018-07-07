@@ -1,0 +1,122 @@
+{% extends "pdfanalyzer/base.html" %}
+
+{% block content %}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+            
+            
+            <p> Wählen Sie Eigenschaften aus, welche bei Ihrer/n pdf-Datei(en) bestimmt werden sollen: </p>
+            <div class="form-check">
+                <input id="wordcount" class="form-check-input" type="checkbox" value="">
+                <label class="form-check-label" for="wordcount">
+                    Word Count
+                </label>
+            </div>
+        
+            <div class="form-check"> 
+                <input id="mostcommonword" class="form-check-input" type="checkbox" value="">
+                <label class="form-check-label" for="mostcommonword">
+                    Most Common Word
+                </label>
+            </div>
+            
+            <div class="form-check"> 
+                <input id="adjectivecount" class="form-check-input" type="checkbox" value="">
+                <label class="form-check-label" for="adjectivecount">
+                    Adjective Count
+                </label>
+            </div>
+            
+            <div class="form-check"> 
+                <input id="nouncount" class="form-check-input" type="checkbox" value="">
+                <label class="form-check-label" for="nouncount">
+                    Noun Count
+                </label>
+            </div>
+            
+            <div class="form-check"> 
+                <input id="verbcount" class="form-check-input" type="checkbox" value="">
+                <label class="form-check-label" for="verbcount">
+                    Verb Count
+                </label>
+            </div>
+                        
+            <hr>
+ 
+        <!-- Form um Dokumente in Dropzone hochladen zu können. -->
+        <form id="pdfdropzone" class="dropzone" action="{% url "pdfanalyzer:upload" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        </form>
+        
+        <!-- Form um Analyse zu starten. -->
+        <form id="analysis"action="{% url "pdfanalyzer:analyse" %}" method="post">
+            {% csrf_token %}
+            <!-- codiert Analysen die durchgeführt werden sollen -->
+            <input hidden id="measurements" type="number" name="measurements"/>
+        </form>
+        
+        <button disabled id="submit-all" type="submit" form="analysis" class="btn btn-dark">
+                    Analyse durchführen
+        </button>
+         
+        <script type="text/javascript">
+            Dropzone.options.pdfdropzone = 
+            {
+                // http://www.dropzonejs.com/#configuration
+               
+                thumbnailWidth: 120,
+                thumbnailHeight: 120,
+                // Prevents Dropzone from uploading dropped files immediately
+                autoProcessQueue : true,
+                
+                init: function() 
+                {             
+                    console.log("init");
+                
+                    var submitButton = document.querySelector("#submit-all");
+                    
+                    $("#submit-all").prop('disabled', true);
+                    //myDropzone = this;
+                    var myDropzone = this;
+ 
+                    submitButton.addEventListener("click", function() 
+                    {
+                        myDropzone.processQueue();
+                        // Tell Dropzone to process all queued files.
+                    });
+                    
+                    // You might want to show the submit button only when
+                    // files are dropped here:
+                    this.on("addedfile", function() 
+                    {
+                        console.log("file added!"); 
+                        // Show submit button here and/or inform user to click it.
+                        //submitButton;
+                        $("#submit-all").prop('disabled', false);
+                    });
+                    
+                    this.on("error", function() 
+                    {
+                        var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+                        thumbnail.css('background-image', 'url("{{ MEDIA_URL }}wrong_file_type_120x120.png")');
+                    });
+                },
+                
+                accept: function(file, done) 
+                {
+                    console.log('accept function');
+                    var thumbnail = $('.dropzone .dz-preview.dz-file-preview .dz-image:last');
+                    thumbnail.css('background-image', 'url("{{ MEDIA_URL }}pdf_icon_120x120.png")');
+                    done();
+                }
+                
+            };
+        </script>
+        
+        </div>
+        
+        <div class="col-md-1"></div>
+        </div>
+
+{% endblock %}
