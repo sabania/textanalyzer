@@ -13,20 +13,26 @@ Nach der Durchführung der Analysen werden die Resultate in einer Tabelle angeze
 Python: Version 3.0.6
 
 ### Installation der notwendigen Pakete:
-- $: pip install django
-- $: pip install nltk
-- $: pip install reportlab
-- $: pip install pypdf2
-- $: pip install pyyaml
-- $: pip install djangorestframework
-- $: pip install django-rest-swagger
+```
+ $: pip install django
+ $: pip install nltk
+ $: pip install reportlab
+ $: pip install pypdf2
+ $: pip install pyyaml
+ $: pip install djangorestframework
+ $: pip install django-rest-swagger
+```
 
 ### Installation:
-- $: virtualenv env-name
-- $: cp textanalyzer /env-name
-- $: activate env-name
-- (env-name)$: cd env-name/Scripts
+```
+ $: virtualenv env-name
+ $: cp textanalyzer /env-name
+ $: activate env-name
+ (env-name)$: cd env-name/Scripts
+ ```
 
 ### Server starten:
-- (env-name)$: cd textanalyzer
-- (env-name)$: python manage.py runserver 0.0.0.0:8080
+```
+ (env-name)$: cd textanalyzer
+ (env-name)$: python manage.py runserver 0.0.0.0:8080
+ ```
